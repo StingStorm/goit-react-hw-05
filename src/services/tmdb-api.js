@@ -1,17 +1,16 @@
 import axios from 'axios';
 
-export async function fetchingGalleryPage(userRequest, currentPage = 1) {
+export async function fetchingTrendingList(currentPage = 1) {
   const getConfig = {
     method: 'get',
-    url: 'https://api.unsplash.com/search/photos',
+    url: 'https://api.themoviedb.org/3/trending/movie/day',
     headers: {
-      Authorization: 'Client-ID f2G1Xa4JTBGFMXLmICWHFxse_TbYP5YFlxnMnI8nQdg',
+      Authorization: `Bearer ${import.meta.env.VITE_TMDB_TOKEN}`,
+      Accept: 'application/json',
     },
     params: {
-      query: userRequest,
       page: currentPage,
-      per_page: 20,
-      orientation: 'landscape',
+      language: 'en-US',
     },
   };
 
