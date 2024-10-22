@@ -1,0 +1,18 @@
+.gridItem {
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+
+  display: flex;
+  align-items: center;
+
+  border-radius: 8px;
+  box-shadow: rgba(206, 50, 50, 0.322) 0px 0px 6px 0px,
+    rgba(205, 205, 162, 0.096) 0px 0px 0px 1px;
+
+  transition: transform 250ms ease-in-out;
+}
+
+.gridItem:hover {
+  transform: scale(1.04);
+}

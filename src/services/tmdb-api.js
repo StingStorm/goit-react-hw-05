@@ -1,20 +1,51 @@
 import axios from 'axios';
 
+const baseGetConfig = {
+  method: 'get',
+  headers: {
+    Authorization: `Bearer ${import.meta.env.VITE_TMDB_TOKEN}`,
+    Accept: 'application/json',
+  },
+};
+
 export async function fetchingTrendingList(currentPage = 1) {
-  const getConfig = {
-    method: 'get',
+  const config = {
+    ...baseGetConfig,
     url: 'https://api.themoviedb.org/3/trending/movie/day',
-    headers: {
-      Authorization: `Bearer ${import.meta.env.VITE_TMDB_TOKEN}`,
-      Accept: 'application/json',
-    },
     params: {
       page: currentPage,
       language: 'en-US',
     },
   };
 
-  const response = await axios(getConfig);
+  const response = await axios(config);
+
+  return response.data;
+}
+
+export async function fetchingMovieListByQuery(query, currentPage = 1) {
+  const config = {
+    ...baseGetConfig,
+    url: 'https://api.themoviedb.org/3/search/movie',
+    params: {
+      query: query,
+      page: currentPage,
+      language: 'en-US',
+    },
+  };
+
+  const response = await axios(config);
+
+  return response.data;
+}
+
+export async function fetchingMoviesGenres() {
+  const config = {
+    ...baseGetConfig,
+    url: `https://api.themoviedb.org/3/genre/movie/list`,
+  };
+
+  const response = await axios(config);
 
   return response.data;
 }

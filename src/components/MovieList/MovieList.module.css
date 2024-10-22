@@ -1,0 +1,13 @@
+.movieOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+
+  width: 100%;
+  transform: translateY(-100%);
+}
+
+li:hover .movieOverlay {
+  transform: translateY(0);
+}

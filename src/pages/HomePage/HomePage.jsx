@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react';
 import { fetchingTrendingList } from '../../services/tmdb-api';
 import MovieList from '../../components/MovieList/MovieList';
+import Section from '../../components/utils/Section/Section';
 
-const HomePage = () => {
+const HomePage = ({ genres }) => {
   const [movies, setMovies] = useState([]);
 
   useEffect(() => {
@@ -19,11 +20,11 @@ const HomePage = () => {
     getMovies();
   }, []);
 
-  console.log(movies);
-
   return (
     <main>
-      <MovieList movies={movies} />
+      <Section>
+        <MovieList movies={movies} genres={genres} />
+      </Section>
     </main>
   );
 };

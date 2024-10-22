@@ -4,12 +4,12 @@ const MovieDetailsPage = () => {
   const { movieId } = useParams();
 
   return (
-    <div>
+    <main>
       <p>MovieDetailsPage - {movieId}</p>
       <Link to="cast">Cast</Link>
       <Link to="reviews">Rewiews</Link>
       <Outlet />
-    </div>
+    </main>
   );
 };
 
