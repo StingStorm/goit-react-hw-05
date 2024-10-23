@@ -1,0 +1,10 @@
+.box {
+  min-height: 220px;
+  padding: 1.5rem;
+  border-radius: 12px;
+  background-color: rgba(0, 0, 0, 0.5);
+
+  &:last-child {
+    flex: 1;
+  }
+}

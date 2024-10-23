@@ -1,0 +1,56 @@
+.movieDetailsContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.movieDetailsNav {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+
+  margin-bottom: 10px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.288);
+}
+
+.navLink,
+.goBackBtn {
+  color: #f0f0f0;
+  text-align: center;
+  letter-spacing: 0.05rem;
+  padding: 8px 0.5rem;
+  min-width: 85px;
+
+  border-width: 0px 1px;
+  border-style: solid;
+  border-color: transparent;
+  border-radius: 6px;
+
+  transition: color 250ms ease-in-out, border-color 250ms ease-in-out,
+    box-shadow 250ms ease-in-out;
+}
+
+.navLink:hover {
+  color: #d6c1c1;
+  box-shadow: rgba(205, 205, 162, 0.25) 0px 12px 22px -8px inset,
+    rgba(255, 255, 255, 0.3) 0px 11px 15px -9px inset;
+}
+
+.active {
+  border-color: rgba(205, 205, 162, 0.55);
+  box-shadow: rgba(205, 205, 162, 0.25) 0px 12px 22px -8px inset,
+    rgba(255, 255, 255, 0.3) 0px 11px 15px -9px inset;
+}
+
+.goBackBtn {
+  color: #d6c1c1;
+  max-width: 105px;
+  box-shadow: rgba(205, 205, 162, 0.25) 0px 12px 22px -8px inset,
+    rgba(255, 255, 255, 0.3) 0px 11px 15px -9px inset;
+}
+
+.goBackBtn:hover {
+  color: #fafafa;
+  border-color: rgba(205, 205, 162, 0.55);
+}

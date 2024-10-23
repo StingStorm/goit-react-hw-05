@@ -7,6 +7,8 @@ import MovieCast from './components/MovieCast/MovieCast';
 import MovieReviews from './components/MovieReviews/MovieReviews';
 import { fetchingMoviesGenres } from './services/tmdb-api';
 import Footer from './components/Footer/Footer';
+import Loader from './components/Loader/Loader';
+import NotFoundPage from './pages/NotFoundPage/NotFoundPage';
 
 const HomePage = lazy(() => import('./pages/HomePage/HomePage'));
 const MoviesPage = lazy(() => import('./pages/MoviesPage/MoviesPage'));
@@ -35,7 +37,7 @@ function App() {
       <Header />
       <Navigation />
 
-      <Suspense fallback={<div>Loading...</div>}>
+      <Suspense fallback={<Loader backdrop />}>
         <Routes>
           <Route path="/" element={<HomePage genres={genres} />} />
           <Route path="/movies" element={<MoviesPage genres={genres} />} />
@@ -43,6 +45,7 @@ function App() {
             <Route path="cast" element={<MovieCast />} />
             <Route path="reviews" element={<MovieReviews />} />
           </Route>
+          <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </Suspense>
 

@@ -1,7 +1,7 @@
 import css from './Section.module.css';
 
-const Section = ({ children }) => {
-  return <ul className={css.sectionPadding}>{children}</ul>;
+const Section = ({ children, className }) => {
+  return <div className={`${css.sectionPadding} ${className}`}>{children}</div>;
 };
 
 export default Section;

@@ -39,6 +39,21 @@ export async function fetchingMovieListByQuery(query, currentPage = 1) {
   return response.data;
 }
 
+export const fetchingMovieById = async id => {
+  const config = {
+    ...baseGetConfig,
+    url: `https://api.themoviedb.org/3/movie/${id}`,
+    params: {
+      language: 'en-US',
+      append_to_response: 'credits,reviews',
+    },
+  };
+
+  const response = await axios(config);
+
+  return response.data;
+};
+
 export async function fetchingMoviesGenres() {
   const config = {
     ...baseGetConfig,

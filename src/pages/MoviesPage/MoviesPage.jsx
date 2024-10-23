@@ -3,30 +3,56 @@ import Section from '../../components/utils/Section/Section';
 import SearchForm from '../../components/SearchForm/SearchForm';
 import { fetchingMovieListByQuery } from '../../services/tmdb-api';
 import MovieList from '../../components/MovieList/MovieList';
+import Container from '../../components/utils/Container/Container';
+import { useSearchParams } from 'react-router-dom';
+import Loader from '../../components/Loader/Loader';
+import ErrorMsg from '../../components/ErrorMsg/ErrorMsg';
 
 const MoviesPage = ({ genres }) => {
   const [movies, setMovies] = useState([]);
-  const [query, setQuery] = useState(null);
+  const [searchParams, setSearchParams] = useSearchParams();
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState('');
 
   useEffect(() => {
-    const getMovies = async () => {
-      if (!query) return;
+    const query = searchParams.get('query');
+    if (!query) return;
 
+    const getMovies = async () => {
+      setIsLoading(true);
+      setError('');
       try {
         const response = await fetchingMovieListByQuery(query);
         setMovies(response.results);
+        if (!(response.results.length > 0)) {
+          setError('Oh no, there are no movies for this search query');
+        }
       } catch (error) {
-        console.log(error);
+        setError(error.message);
+      } finally {
+        setIsLoading(false);
       }
     };
 
     getMovies();
-  }, [query]);
+  }, [searchParams]);
+
+  const handleSubmit = query => {
+    setSearchParams({ query });
+  };
   return (
     <main>
       <Section>
-        <SearchForm onSubmit={setQuery} />
-        {movies.length > 0 && <MovieList movies={movies} genres={genres} />}
+        <Container>
+          <SearchForm onSubmit={handleSubmit} />
+          {error ? (
+            <ErrorMsg>{error}</ErrorMsg>
+          ) : (
+            movies.length > 0 &&
+            !isLoading && <MovieList movies={movies} genres={genres} />
+          )}
+          {isLoading && <Loader />}
+        </Container>
       </Section>
     </main>
   );

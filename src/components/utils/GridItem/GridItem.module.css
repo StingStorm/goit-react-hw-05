@@ -11,6 +11,15 @@
     rgba(205, 205, 162, 0.096) 0px 0px 0px 1px;
 
   transition: transform 250ms ease-in-out;
+
+  & a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+
+    background-color: #051f50;
+  }
 }
 
 .gridItem:hover {

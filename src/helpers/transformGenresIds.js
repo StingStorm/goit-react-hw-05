@@ -4,7 +4,7 @@ export const transformGenresIds = (genres, movieGenreIds) => {
       if (genreId === genre?.id) return genre;
     });
 
-    return genre.name;
+    return genre?.name;
   });
 
   return transformedGenres;
