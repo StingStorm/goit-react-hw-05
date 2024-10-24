@@ -16,10 +16,9 @@ import clsx from 'clsx';
 const MovieDetailsPage = () => {
   const { movieId } = useParams();
   const [movie, setMovie] = useState(null);
-  const [movieAdditional, setMovieAdditional] = useState(null);
 
   const location = useLocation();
-  const goBackPath = useRef(location.state || `/`);
+  const goBackPath = useRef(location.state || `/movies`);
 
   const getLinkClass = ({ isActive }) => {
     return clsx(css.navLink, isActive && css.active);
@@ -31,10 +30,6 @@ const MovieDetailsPage = () => {
         const response = await fetchingMovieById(movieId);
 
         setMovie(response);
-        setMovieAdditional({
-          cast: response?.credits.cast,
-          reviews: response?.reviews.results,
-        });
       } catch (error) {
         console.log(error);
       }
@@ -60,7 +55,7 @@ const MovieDetailsPage = () => {
                 Rewiews
               </NavLink>
             </nav>
-            <Outlet context={movieAdditional} />
+            <Outlet />
           </div>
         </Container>
       </Section>

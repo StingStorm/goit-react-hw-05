@@ -45,7 +45,34 @@ export const fetchingMovieById = async id => {
     url: `https://api.themoviedb.org/3/movie/${id}`,
     params: {
       language: 'en-US',
-      append_to_response: 'credits,reviews',
+    },
+  };
+
+  const response = await axios(config);
+
+  return response.data;
+};
+
+export const fetchingMovieCredits = async id => {
+  const config = {
+    ...baseGetConfig,
+    url: `https://api.themoviedb.org/3/movie/${id}/credits`,
+    params: {
+      language: 'en-US',
+    },
+  };
+
+  const response = await axios(config);
+
+  return response.data;
+};
+
+export const fetchingMovieReviews = async id => {
+  const config = {
+    ...baseGetConfig,
+    url: `https://api.themoviedb.org/3/movie/${id}/reviews`,
+    params: {
+      language: 'en-US',
     },
   };
 
